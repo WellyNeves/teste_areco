@@ -1,0 +1,6 @@
+object v: Tv
+  OldCreateOrder = False
+  OnDestroy = DSServerModuleDestroy
+  Height = 150
+  Width = 334
+end

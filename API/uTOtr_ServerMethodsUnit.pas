@@ -1,0 +1,288 @@
+unit uTOtr_ServerMethodsUnit;
+
+interface
+
+uses System.SysUtils, System.Classes, System.Json, DataSnap.DSProviderDataModuleAdapter, Datasnap.DSServer, Datasnap.DSAuth, uT_Conexao, DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
+  FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
+  FireDAC.Phys, FireDAC.Phys.PG, FireDAC.Phys.PGDef, FireDAC.VCLUI.Wait,
+  FireDAC.Comp.Client;
+
+type
+  TfOtr_ServerMethodsUnit = class(TDSServerModule)
+    procedure DSServerModuleDestroy(Sender: TObject);
+  private
+    FConexao : TConexao;
+
+    procedure AfterConstruction; override;
+    function  DataSetToJson(pDataSet: TDataSet): TJSONArray;
+  public
+    function ListaProdutos(out pJson: TJSONObject; out pErros: String): Boolean;
+    function InsertProduto(pJson: TJSONObject; out pErros: String): Boolean;
+    function UpdateProduto(pJson: TJSONObject; out pErros: String): Boolean;
+    function DeleteProduto(pID: Integer; out pErros: String): Boolean;
+  end;
+
+implementation
+
+{$R *.dfm}
+
+uses System.StrUtils, IBX.IBQuery;
+
+procedure TfOtr_ServerMethodsUnit.AfterConstruction;
+begin
+  inherited;
+
+  FConexao := TConexao.Create;
+  try
+    FConexao.Conectar;
+  except
+    raise;
+  end;
+end;
+
+procedure TfOtr_ServerMethodsUnit.DSServerModuleDestroy(Sender: TObject);
+begin
+  if(FConexao.IsConectado)
+  then FConexao.Desconectar;
+
+  FConexao.Free;
+end;
+
+function TfOtr_ServerMethodsUnit.DataSetToJson(pDataSet: TDataSet): TJSONArray;
+var
+  vJSonObj     : TJSONObject;
+  vJSonStr     : TJSONString;
+  vJSonNumber  : TJSONNumber;
+  pField       : TField;
+begin
+  try
+    Result := TJSONArray.Create;
+    pDataSet.First;
+
+    while not(pDataSet.Eof) do
+    begin
+      vJSonObj := TJSONObject.Create;
+
+      for pField in pDataSet.Fields do
+      begin
+        if pField.IsNull then
+        begin
+          vJSonObj.AddPair(pField.FieldName, TJSONNull.Create);
+          Continue;
+        end;
+
+        case pField.DataType of
+          ftString:
+          begin
+            vJSonStr := TJSONString.Create(pField.AsString);
+            vJSonObj.AddPair(pField.FieldName, vJSonStr);
+          end;
+
+          ftInteger:
+          begin
+            vJSonNumber := TJSONNumber.Create(pField.AsInteger);
+            vJSonObj.AddPair(pField.FieldName, vJSonNumber);
+          end;
+
+          ftFloat, ftExtended, ftCurrency:
+          begin
+            vJSonNumber := TJSONNumber.Create(pField.AsCurrency);
+            vJSonObj.AddPair(pField.FieldName, vJSonNumber);
+          end;
+
+          ftDate:
+          begin
+            vJSonStr := TJSONString.Create(FormatDateTime('yyyy/mm/dd', pField.AsDateTime));
+            vJSonObj.AddPair(pField.FieldName, vJSonStr);
+          end;
+
+          ftTime:
+          begin
+            vJSonStr := TJSONString.Create(FormatDateTime('HH:MM:SS', pField.AsDateTime));
+            vJSonObj.AddPair(pField.FieldName, vJSonStr);
+          end;
+
+          ftDateTime, ftTimeStamp:
+          begin
+            vJSonStr := TJSONString.Create(FormatDateTime('yyyy/mm/dd HH:MM:SS', pField.AsDateTime));
+            vJSonObj.AddPair(pField.FieldName, vJSonStr);
+          end
+          else
+          begin
+            vJSonStr := TJSONString.Create(pField.AsString);
+            vJSonObj.AddPair(pField.FieldName, vJSonStr);
+          end;
+        end;
+      end;
+
+      Result.AddElement(vJSonObj);
+      pDataSet.next;
+    end;
+  except
+    raise;
+  end;
+end;
+
+function TfOtr_ServerMethodsUnit.ListaProdutos(out pJson: TJSONObject; out pErros: String): Boolean;
+var
+  vJsonObject : TJSONObject;
+  vSQL: TFDQuery;
+begin
+  vSQL := FConexao.GetNewQuery;
+  try
+    vSQL.Transaction.StartTransaction;
+    try
+      vSQL.SQL.Text := 'SELECT * FROM produto ORDER BY id';
+      vSQL.Open;
+
+      vJsonObject := TJSONObject.Create;
+      vJsonObject.AddPair('produtos', DataSetToJson(vSQL));
+      vSQL.Transaction.Commit;
+
+      pJson  := vJsonObject;
+      Result := True;
+    except on E:Exception do
+      begin
+        vSQL.Transaction.Rollback;
+        pErros  := E.Message;
+        Result  := False;
+      end;
+    end;
+  finally
+    vSQL.Close;
+    vSQL.Free;
+  end;
+end;
+
+function TfOtr_ServerMethodsUnit.InsertProduto(pJson: TJSONObject; out pErros: String): Boolean;
+var
+  vProdutoDescricao  : String;
+  vProdutoDataCad    : String;
+  vProdutoValorUnit  : Currency;
+  vProdutoObservacao : String;
+
+  vSQL: TFDQuery;
+begin
+  vProdutoDescricao  := pJson.GetValue<String>('descricao');
+  vProdutoDataCad    := pJson.GetValue<String>('data_cadastro');
+  vProdutoValorUnit  := pJson.GetValue<Currency>('valor_unitario');
+
+  if not(pJson.TryGetValue('observacao', vProdutoObservacao))
+  then vProdutoObservacao := '';
+
+  vSQL := FConexao.GetNewQuery;
+  try
+    vSQL.Transaction.StartTransaction;
+    try
+      vSQL.SQL.Text := 'INSERT INTO produto(descricao, data_cadastro, valor_unitario, observacao) VALUES(:descricao, :data_cadastro, :valor_unitario, :observacao)';
+
+      vSQL.ParamByName('descricao').DataType := ftString;
+      vSQL.ParamByName('descricao').AsString := vProdutoDescricao;
+
+      vSQL.ParamByName('data_cadastro').DataType   := ftDateTime;
+      vSQL.ParamByName('data_cadastro').AsDateTime := StrToDateTime(vProdutoDataCad);
+
+      vSQL.ParamByName('valor_unitario').DataType   := ftExtended;
+      vSQL.ParamByName('valor_unitario').AsCurrency := vProdutoValorUnit;
+
+      vSQL.ParamByName('observacao').DataType := ftString;
+      vSQL.ParamByName('observacao').AsString := vProdutoObservacao;
+
+      vSQL.ExecSQL;
+      vSQL.Transaction.Commit;
+
+      Result := True;
+    except on E:Exception do
+      begin
+        vSQL.Transaction.Rollback;
+        pErros  := E.Message;
+        Result  := False;
+      end;
+    end;
+  finally
+    vSQL.Close;
+    vSQL.Free;
+  end;
+end;
+
+function TfOtr_ServerMethodsUnit.UpdateProduto(pJson: TJSONObject; out pErros: String): Boolean;
+var
+  vProdutoID         : Integer;
+  vProdutoDescricao  : String;
+  vProdutoValorUnit  : Currency;
+  vProdutoObservacao : String;
+
+  vSQL: TFDQuery;
+begin
+  vProdutoID         := pJson.GetValue<Integer>('id');
+  vProdutoDescricao  := pJson.GetValue<String>('descricao');
+  vProdutoValorUnit  := pJson.GetValue<Currency>('valor_unitario');
+
+  if not(pJson.TryGetValue('observacao', vProdutoObservacao))
+  then vProdutoObservacao := '';
+
+  vSQL := FConexao.GetNewQuery;
+  try
+    vSQL.Transaction.StartTransaction;
+    try
+      vSQL.SQL.Text := 'UPDATE PRODUTO SET descricao = :descricao, valor_unitario = :valor_unitario, observacao = :observacao WHERE id = :id';
+
+      vSQL.ParamByName('descricao').DataType := ftString;
+      vSQL.ParamByName('descricao').AsString := vProdutoDescricao;
+
+      vSQL.ParamByName('valor_unitario').DataType   := ftExtended;
+      vSQL.ParamByName('valor_unitario').AsCurrency := vProdutoValorUnit;
+
+      vSQL.ParamByName('observacao').DataType := ftString;
+      vSQL.ParamByName('observacao').AsString := vProdutoObservacao;
+
+      vSQL.ParamByName('id').DataType  := ftInteger;
+      vSQL.ParamByName('id').AsInteger := vProdutoID;
+      vSQL.ExecSQL;
+      vSQL.Transaction.Commit;
+
+      Result := True;
+    except on E:Exception do
+      begin
+        vSQL.Transaction.Rollback;
+        pErros  := E.Message;
+        Result  := False;
+      end;
+    end;
+  finally
+    vSQL.Close;
+    vSQL.Free;
+  end;
+end;
+
+function TfOtr_ServerMethodsUnit.DeleteProduto(pID: Integer; out pErros: String): Boolean;
+var
+  vSQL: TFDQuery;
+begin
+  vSQL := FConexao.GetNewQuery;
+  try
+    vSQL.Transaction.StartTransaction;
+    try
+      vSQL.SQL.Text := 'DELETE FROM PRODUTO WHERE id = :id';
+      vSQL.ParamByName('id').DataType  := ftInteger;
+      vSQL.ParamByName('id').AsInteger := pID;
+      vSQL.ExecSQL;
+      vSQL.Transaction.Commit;
+
+      Result := True;
+    except on E:Exception do
+      begin
+        vSQL.Transaction.Rollback;
+        pErros  := E.Message;
+        Result  := False;
+      end;
+    end;
+  finally
+    vSQL.Close;
+    vSQL.Free;
+  end;
+end;
+
+end.
+

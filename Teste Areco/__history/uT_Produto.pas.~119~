@@ -1,0 +1,74 @@
+unit uT_Produto;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, System.JSON, StrUtils;
+
+type
+  TProduto = class
+  private
+    FID           : Integer;
+    FDescricao    : String;
+    FDataCadastro : TDateTime;
+    FValorUnitario: Currency;
+    FObservacao   : String;
+  public
+    constructor Create(pID: Integer; pDataCadastro: TDateTime; pDescricao: String; pValorUnitario: Extended; pObservacao: String);
+    class function CreateFromJson(pJsonObj: TJSONObject): TProduto;
+
+    function ToJson: TJSONObject;
+
+    property ID           : Integer   read FID            write FID;
+    property Descricao    : String    read FDescricao     write FDescricao;
+    property DataCadastro : TDateTime read FDataCadastro  write FDataCadastro;
+    property ValorUnitario: Currency  read FValorUnitario write FValorUnitario;
+    property Observacao   : String    read FObservacao    write FObservacao;
+  end;
+
+implementation
+
+constructor TProduto.Create(pID: Integer; pDataCadastro: TDateTime; pDescricao: String; pValorUnitario: Extended; pObservacao: String);
+begin
+  FID            := pID;
+  FDescricao     := pDescricao;
+  FDataCadastro  := pDataCadastro;
+  FValorUnitario := pValorUnitario;
+  FObservacao    := pObservacao;
+end;
+
+class function TProduto.CreateFromJson(pJsonObj: TJSONObject): TProduto;
+var
+  vProdutoID        : Integer;
+  vProdutoDescricao : String;
+  vProdutoDataCad   : String;
+  vProdutoValorUnit : Currency;
+  vProdutoObservacao: String;
+  vDateTimeFormat   : TFormatSettings;
+begin
+  if(pJsonObj.TryGetValue<Integer> ('id'            , vProdutoID))         and
+    (pJsonObj.TryGetValue<String>  ('descricao'     , vProdutoDescricao))  and
+    (pJsonObj.TryGetValue<String>  ('data_cadastro' , vProdutoDataCad))    and
+    (pJsonObj.TryGetValue<Currency>('valor_unitario', vProdutoValorUnit))  and
+    (pJsonObj.TryGetValue<String>  ('observacao'    , vProdutoObservacao)) then
+  begin
+    vDateTimeFormat := TFormatSettings.Create;
+    vDateTimeFormat.ShortDateFormat := 'yyyy/mm/dd';
+    vDateTimeFormat.LongTimeFormat  := 'hh:mm:ss';
+
+    Result := TProduto.Create(vProdutoID, StrToDateTime(vProdutoDataCad, vDateTimeFormat), vProdutoDescricao, vProdutoValorUnit, vProdutoObservacao);
+  end
+  else Result := nil;
+end;
+
+function TProduto.ToJson: TJSONObject;
+begin
+  Result := TJSONObject.Create;
+  Result.AddPair('id'             , TJSONNumber.Create(FID));
+  Result.AddPair('descricao'      , FDescricao);
+  Result.AddPair('data_cadastro'  , DateTimeToStr(FDataCadastro));
+  Result.AddPair('valor_unitario' , TJSONNumber.Create(FValorUnitario));
+  Result.AddPair('observacao'     , IfThen(FObservacao <> '', FObservacao, ''));
+end;
+
+end.

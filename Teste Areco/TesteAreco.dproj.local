@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/11/22 21:34:28.000.685,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2022/11/22 21:34:28.000.341,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2022/11/22 21:34:28.000.076,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/11/22 21:35:31.000.873,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2022/11/22 21:35:31.000.982,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2022/11/22 21:35:31.000.700,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/11/22 21:36:05.000.200,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\ServerConst1.pas</Transaction>
+    <Transaction>2022/11/22 21:36:05.000.295,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2022/11/22 21:36:05.000.107,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2023/07/22 14:45:10.000.818,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/07/22 14:45:44.000.584,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\if_Main.dfm=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2023/07/22 14:45:44.000.584,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\if_Main.pas=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/07/22 14:45:59.000.861,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\TesteAreco.dproj=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2023/07/22 14:46:40.000.576,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/07/22 14:50:01.000.678,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\uT_DataSnapREST.pas</Transaction>
+    <Transaction>2023/07/22 17:21:22.000.113,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/07/22 17:24:11.000.520,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\uTProduto.pas=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/07/22 17:25:51.000.192,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\uT_Produto.pas=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\uTProduto.pas</Transaction>
+    <Transaction>2023/07/22 18:05:56.000.739,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/07/22 18:09:16.000.466,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\ifCad_Produto.pas=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/07/22 18:09:16.000.466,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\ifCad_Produto.dfm=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

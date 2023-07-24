@@ -1,0 +1,110 @@
+unit uT_DataSnapREST;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, REST.Client, REST.Types, System.JSON, uT_Produto;
+
+type
+  TDataSnapRest = class
+  private
+    FRESTClient   : TRESTClient;
+    FRESTRequest  : TRESTRequest;
+    FRESTResponse : TRESTResponse;
+
+    function GetJsonResponse: TJSONArray;
+  public
+    constructor Create;
+
+    function ListaProdutos: TArray<TProduto>;
+    function InsertProduto(pProduto: TProduto): Boolean;
+    function UpdateProduto(pProduto: TProduto): Boolean;
+    function DeleteProduto(pID: Integer): Boolean;
+  end;
+
+implementation
+
+constructor TDataSnapRest.Create;
+begin
+  FRESTClient           := TRESTClient  .Create('http://localhost:8080/datasnap/rest/TfOtr_ServerMethodsUnit/');
+  FRESTRequest          := TRESTRequest .Create(nil);
+  FRESTResponse         := TRESTResponse.Create(nil);
+
+  FRESTRequest.Client   := FRESTClient;
+  FRESTRequest.Response := FRESTResponse;
+end;
+
+function TDataSnapRest.ListaProdutos: TArray<TProduto>;
+var
+  vJsonResponse: TJSONArray;
+  X : Integer;
+begin
+  FRESTRequest.Method := rmGET;
+  FRESTRequest.Resource := 'ListaProdutos';
+  FRESTRequest.Execute;
+  vJsonResponse := GetJsonResponse;
+
+  if(vJsonResponse <> nil) then
+  begin
+    SetLength(Result, vJsonResponse.Count);
+
+    for X := 0 to vJsonResponse.Count - 1
+    do Result[X] := TProduto.CreateFromJson(vJsonResponse.Items[X] as TJSONObject);
+  end;
+end;
+
+function TDataSnapRest.InsertProduto(pProduto: TProduto): Boolean;
+var
+  vJsonProduto: TJSONObject;
+begin
+  vJsonProduto := pProduto.ToJson;
+  try
+    FRESTRequest.Method := rmPOST;
+    FRESTRequest.Resource := '"InsertProduto"';
+    FRESTRequest.AddBody(vJsonProduto.ToString, ctAPPLICATION_JSON);
+    FRESTRequest.Execute;
+    Result := FRESTResponse.StatusCode = 200;
+  finally
+    vJsonProduto.Free;
+  end;
+end;
+
+function TDataSnapRest.UpdateProduto(pProduto: TProduto): Boolean;
+var
+  vJsonProduto: TJSONObject;
+begin
+  vJsonProduto := pProduto.ToJson;
+  try
+    FRESTRequest.Method := rmPUT;
+    FRESTRequest.Resource := '"UpdateProduto"';
+    FRESTRequest.AddBody(vJsonProduto.ToString, ctAPPLICATION_JSON);
+    FRESTRequest.Execute;
+    Result := FRESTResponse.StatusCode = 201;
+  finally
+    vJsonProduto.Free;
+  end;
+end;
+
+function TDataSnapRest.DeleteProduto(pID: Integer): Boolean;
+begin
+  FRESTRequest.Method := rmDELETE;
+  FRESTRequest.Resource := '"DeleteProduto"/' + IntToStr(pID);
+  FRESTRequest.Execute;
+  Result := FRESTResponse.StatusCode = 200;
+end;
+
+function TDataSnapRest.GetJsonResponse: TJSONArray;
+var
+  vJsonValue: TJSONValue;
+begin
+  Result := nil;
+  if(FRESTResponse.StatusCode = 200) then
+  begin
+    vJsonValue := TJSONObject.ParseJSONValue(FRESTResponse.Content);
+
+    if(vJsonValue is TJSONObject)
+    then Result :=  TJSONObject(vJsonValue).GetValue<TJSONArray>('result[0].PRODUTOS');
+  end;
+end;
+
+end.

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2023/07/23 07:00:02.000.714,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2023/07/23 07:00:02.000.605,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2023/07/23 07:00:02.000.277,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\FormUnit1.pas</Transaction>
+    <Transaction>2023/07/23 07:00:02.000.870,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\WebModuleUnit1.pas</Transaction>
+    <Transaction>2023/07/23 07:00:03.000.417,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\js\serverfunctions.js</Transaction>
+    <Transaction>2023/07/23 07:00:03.000.401,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\js\json2.js</Transaction>
+    <Transaction>2023/07/23 07:00:03.000.511,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\css\main.css</Transaction>
+    <Transaction>2023/07/23 07:00:03.000.495,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\js\serverfunctioninvoker.js</Transaction>
+    <Transaction>2023/07/23 07:00:03.000.401,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\js\callbackframework.js</Transaction>
+    <Transaction>2023/07/23 07:00:03.000.417,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\js\base64-min.js</Transaction>
+    <Transaction>2023/07/23 07:00:03.000.589,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\templates\serverfunctioninvoker.html</Transaction>
+    <Transaction>2023/07/23 07:00:03.000.386,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\js\serverfunctionexecutor.js</Transaction>
+    <Transaction>2023/07/23 07:00:03.000.526,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\css\serverfunctioninvoker.css</Transaction>
+    <Transaction>2023/07/23 07:00:03.000.448,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\js\serverfunctionexecutor-min.js</Transaction>
+    <Transaction>2023/07/23 07:00:03.000.386,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\js\base64.js</Transaction>
+    <Transaction>2023/07/23 07:00:03.000.667,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\images\collapse.png</Transaction>
+    <Transaction>2023/07/23 07:00:03.000.699,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\images\expand.png</Transaction>
+    <Transaction>2023/07/23 07:00:03.000.558,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\templates\reversestring.html</Transaction>
+    <Transaction>2023/07/23 07:00:03.000.480,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\js\connection.js</Transaction>
+    <Transaction>2023/07/23 07:00:03.000.464,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\js\callbackframework-min.js</Transaction>
+    <Transaction>2023/07/23 07:00:03.000.433,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\js\json2-min.js</Transaction>
+    <Transaction>2023/07/23 07:00:46.000.995,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\FormUnit1.dfm=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\if_Main.dfm</Transaction>
+    <Transaction>2023/07/23 07:00:46.000.995,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\FormUnit1.pas=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\if_Main.pas</Transaction>
+    <Transaction>2023/07/23 07:01:35.000.308,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\ServerContainerUnit1.pas=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\mDMOtr_ServerContainer.pas</Transaction>
+    <Transaction>2023/07/23 07:01:35.000.308,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\ServerContainerUnit1.dfm=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\mDMOtr_ServerContainer.dfm</Transaction>
+    <Transaction>2023/07/23 07:02:03.000.902,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\WebModuleUnit1.dfm=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\mDMOtr_WebModuleUnit.dfm</Transaction>
+    <Transaction>2023/07/23 07:02:03.000.902,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\WebModuleUnit1.pas=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\mDMOtr_WebModuleUnit.pas</Transaction>
+    <Transaction>2023/07/23 07:02:29.000.198,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\ServerMethodsUnit1.dfm=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\uTOtr_ServerMethodsUnit.dfm</Transaction>
+    <Transaction>2023/07/23 07:02:29.000.198,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\ServerMethodsUnit1.pas=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\uTOtr_ServerMethodsUnit.pas</Transaction>
+    <Transaction>2023/07/23 07:08:50.000.058,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\Unit1.pas</Transaction>
+    <Transaction>2023/07/23 07:09:00.000.417,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\Unit1.pas=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\uT_Conexao.pas</Transaction>
+    <Transaction>2023/07/23 12:58:04.000.954,=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\Unit1.pas</Transaction>
+    <Transaction>2023/07/23 13:06:04.000.088,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\Unit1.pas=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\uT_Conexao2.pas</Transaction>
+    <Transaction>2023/07/23 19:05:33.000.285,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\uT_Conexao.pas=</Transaction>
+    <Transaction>2023/07/23 19:06:50.000.725,C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\uT_Conexao2.pas=C:\Users\berlin\Documents\Embarcadero\Studio\Projects\API\uT_Conexao.pas</Transaction>
+  </Transactions>
+</BorlandProject>

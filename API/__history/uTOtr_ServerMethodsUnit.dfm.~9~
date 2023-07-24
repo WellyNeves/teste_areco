@@ -1,0 +1,16 @@
+object fOtr_ServerMethodsUnit: TfOtr_ServerMethodsUnit
+  OldCreateOrder = False
+  OnDestroy = DSServerModuleDestroy
+  Height = 150
+  Width = 334
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Database=ARECO'
+      'User_Name=admin'
+      'Password=admin'
+      'Server=localhost'
+      'DriverID=PG')
+    Left = 104
+    Top = 64
+  end
+end

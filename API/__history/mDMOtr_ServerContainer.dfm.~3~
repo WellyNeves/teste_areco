@@ -1,0 +1,23 @@
+object DMOtr_ServerContainer: TDMOtr_ServerContainer
+  OldCreateOrder = False
+  Height = 271
+  Width = 415
+  object DSServerPrincipal: TDSServer
+    Left = 96
+    Top = 11
+  end
+  object DSAuthenticationManager: TDSAuthenticationManager
+    OnUserAuthenticate = DSAuthenticationManagerUserAuthenticate
+    OnUserAuthorize = DSAuthenticationManagerUserAuthorize
+    Roles = <>
+    Left = 96
+    Top = 197
+  end
+  object DSServerClass1: TDSServerClass
+    OnGetClass = DSServerClass1GetClass
+    Server = DSServerPrincipal
+    LifeCycle = 'Invocation'
+    Left = 200
+    Top = 11
+  end
+end

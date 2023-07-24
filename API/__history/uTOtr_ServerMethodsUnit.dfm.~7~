@@ -1,0 +1,24 @@
+object fOtr_ServerMethodsUnit: TfOtr_ServerMethodsUnit
+  OldCreateOrder = False
+  OnDestroy = DSServerModuleDestroy
+  Height = 150
+  Width = 334
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Database=ARECO'
+      'User_Name=admin'
+      'Password=dfdsfsdfsd'
+      'DriverID=PG')
+    LoginPrompt = False
+    Left = 64
+    Top = 56
+  end
+  object FDPhysPgDriverLink1: TFDPhysPgDriverLink
+    VendorHome = 'C:\Users\berlin\Documents\Embarcadero\Studio\Projects\_EXE\lib'
+    VendorLib = 
+      'C:\Users\berlin\Documents\Embarcadero\Studio\Projects\_EXE\libpq' +
+      '.dll'
+    Left = 168
+    Top = 40
+  end
+end

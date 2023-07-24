@@ -1,0 +1,25 @@
+program API;
+{$APPTYPE GUI}
+
+{$R *.dres}
+
+uses
+  Vcl.Forms,
+  Web.WebReq,
+  IdHTTPWebBrokerBridge,
+  if_Main in 'if_Main.pas' {f_Main},
+  uTOtr_ServerMethodsUnit in 'uTOtr_ServerMethodsUnit.pas' {fOtr_ServerMethodsUnit: TDSServerModule},
+  mDMOtr_ServerContainer in 'mDMOtr_ServerContainer.pas' {DMOtr_ServerContainer: TDataModule},
+  mDMOtr_WebModuleUnit in 'mDMOtr_WebModuleUnit.pas' {DMOtr_WebModuleUnit: TWebModule},
+  uT_Conexao in 'uT_Conexao.pas',
+  uT_Conexao2 in 'uT_Conexao2.pas';
+
+{$R *.res}
+
+begin
+  if WebRequestHandler <> nil then
+    WebRequestHandler.WebModuleClass := WebModuleClass;
+  Application.Initialize;
+  Application.CreateForm(Tf_Main, f_Main);
+  Application.Run;
+end.

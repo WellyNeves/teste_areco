@@ -1,0 +1,139 @@
+unit mDMOtr_WebModuleUnit;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Web.HTTPApp, Datasnap.DSHTTPCommon,
+  Datasnap.DSHTTPWebBroker, Datasnap.DSServer,
+  Web.WebFileDispatcher, Web.HTTPProd,
+  DataSnap.DSAuth,
+  Datasnap.DSProxyDispatcher, Datasnap.DSProxyJavaAndroid,
+  Datasnap.DSProxyJavaBlackBerry, Datasnap.DSProxyObjectiveCiOS,
+  Datasnap.DSProxyCsharpSilverlight,
+  Datasnap.DSProxyFreePascal_iOS,
+  Datasnap.DSProxyJavaScript, IPPeerServer, Datasnap.DSMetadata,
+  Datasnap.DSServerMetadata, Datasnap.DSClientMetadata, Datasnap.DSCommonServer,
+  Datasnap.DSHTTP;
+
+type
+  TDMOtr_WebModuleUnit = class(TWebModule)
+    DSRESTWebDispatcher: TDSRESTWebDispatcher;
+    ServerFunctionInvoker: TPageProducer;
+    ReverseString: TPageProducer;
+    WebFileDispatcher: TWebFileDispatcher;
+    DSProxyGenerator: TDSProxyGenerator;
+    DSServerMetaDataProvider: TDSServerMetaDataProvider;
+    DSProxyDispatcher: TDSProxyDispatcher;
+    procedure ServerFunctionInvokerHTMLTag(Sender: TObject; Tag: TTag;
+      const TagString: string; TagParams: TStrings; var ReplaceText: string);
+    procedure WebModuleDefaultAction(Sender: TObject;
+      Request: TWebRequest; Response: TWebResponse; var Handled: Boolean);
+    procedure WebModuleBeforeDispatch(Sender: TObject;
+      Request: TWebRequest; Response: TWebResponse; var Handled: Boolean);
+    procedure WebFileDispatcherBeforeDispatch(Sender: TObject;
+      const AFileName: string; Request: TWebRequest; Response: TWebResponse;
+      var Handled: Boolean);
+    procedure WebModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+    FServerFunctionInvokerAction: TWebActionItem;
+    function AllowServerFunctionInvoker: Boolean;
+  public
+    { Public declarations }
+  end;
+
+var
+  WebModuleClass: TComponentClass = TDMOtr_WebModuleUnit;
+
+implementation
+
+
+{$R *.dfm}
+
+uses uTOtr_ServerMethodsUnit, mDMOtr_ServerContainer, Web.WebReq;
+
+procedure TDMOtr_WebModuleUnit.ServerFunctionInvokerHTMLTag(Sender: TObject; Tag: TTag;
+  const TagString: string; TagParams: TStrings; var ReplaceText: string);
+begin
+  if SameText(TagString, 'urlpath') then
+    ReplaceText := string(Request.InternalScriptName)
+  else if SameText(TagString, 'port') then
+    ReplaceText := IntToStr(Request.ServerPort)
+  else if SameText(TagString, 'host') then
+    ReplaceText := string(Request.Host)
+  else if SameText(TagString, 'classname') then
+    ReplaceText := uTOtr_ServerMethodsUnit.TfOtr_ServerMethodsUnit.ClassName
+  else if SameText(TagString, 'loginrequired') then
+    if DSRESTWebDispatcher.AuthenticationManager <> nil then
+      ReplaceText := 'true'
+    else
+      ReplaceText := 'false'
+  else if SameText(TagString, 'serverfunctionsjs') then
+    ReplaceText := string(Request.InternalScriptName) + '/js/serverfunctions.js'
+  else if SameText(TagString, 'servertime') then
+    ReplaceText := DateTimeToStr(Now)
+  else if SameText(TagString, 'serverfunctioninvoker') then
+    if AllowServerFunctionInvoker then
+      ReplaceText :=
+      '<div><a href="' + string(Request.InternalScriptName) +
+      '/ServerFunctionInvoker" target="_blank">Server Functions</a></div>'
+    else
+      ReplaceText := '';
+end;
+
+procedure TDMOtr_WebModuleUnit.WebModuleDefaultAction(Sender: TObject;
+  Request: TWebRequest; Response: TWebResponse; var Handled: Boolean);
+begin
+  if (Request.InternalPathInfo = '') or (Request.InternalPathInfo = '/')then
+    Response.Content := ServerFunctionInvoker.Content
+  else
+    Response.SendRedirect(Request.InternalScriptName + '/');
+end;
+
+procedure TDMOtr_WebModuleUnit.WebModuleBeforeDispatch(Sender: TObject;
+  Request: TWebRequest; Response: TWebResponse; var Handled: Boolean);
+begin
+  if FServerFunctionInvokerAction <> nil then
+    FServerFunctionInvokerAction.Enabled := AllowServerFunctionInvoker;
+end;
+
+function TDMOtr_WebModuleUnit.AllowServerFunctionInvoker: Boolean;
+begin
+  Result := True;
+end;
+
+procedure TDMOtr_WebModuleUnit.WebFileDispatcherBeforeDispatch(Sender: TObject;
+  const AFileName: string; Request: TWebRequest; Response: TWebResponse;
+  var Handled: Boolean);
+var
+  D1, D2: TDateTime;
+begin
+  Handled := False;
+  if SameFileName(ExtractFileName(AFileName), 'serverfunctions.js') then
+    if not FileExists(AFileName) or (FileAge(AFileName, D1) and FileAge(WebApplicationFileName, D2) and (D1 < D2)) then
+    begin
+      DSProxyGenerator.TargetDirectory := ExtractFilePath(AFileName);
+      DSProxyGenerator.TargetUnitName := ExtractFileName(AFileName);
+      DSProxyGenerator.Write;
+    end;
+end;
+
+procedure TDMOtr_WebModuleUnit.WebModuleCreate(Sender: TObject);
+begin
+  FServerFunctionInvokerAction := ActionByName('ServerFunctionInvokerAction');
+  DSServerMetaDataProvider.Server := DSServer;
+  DSRESTWebDispatcher.Server := DSServer;
+  if DSServer.Started then
+  begin
+    DSRESTWebDispatcher.DbxContext := DSServer.DbxContext;
+    DSRESTWebDispatcher.Start;
+  end;
+  DSRESTWebDispatcher.AuthenticationManager := DSAuthenticationManager;
+end;
+
+initialization
+finalization
+  Web.WebReq.FreeWebModules;
+
+end.
+

@@ -1,0 +1,94 @@
+unit uT_Conexao2;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Comp.Client, FireDAC.Phys.PG;
+
+type
+  TConexao2 = class(TObject)
+  private
+    FConnection: TFDConnection;
+    FTransaction: TFDTransaction;
+    FConnected: Boolean;
+  public
+    constructor Create;
+    destructor Destroy; override;
+    procedure Conectar;
+    procedure Desconectar;
+    function IsConectado: Boolean;
+    function GetNewQuery: TFDQuery;
+  end;
+
+implementation
+
+{ TConexao }
+
+constructor TConexao2.Create;
+begin
+  FConnection  := TFDConnection.Create(nil);
+  FTransaction := TFDTransaction.Create(nil);
+
+  FTransaction.Connection := FConnection;
+  FConnection.LoginPrompt := False;
+
+  FConnected := False;
+end;
+
+destructor TConexao2.Destroy;
+begin
+  Desconectar;
+  FTransaction.Free;
+  FConnection.Free;
+
+  inherited;
+end;
+
+procedure TConexao2.Conectar;
+begin
+  if(FConnected)
+  then Exit;
+
+  FConnection.Params.Clear;
+  FConnection.Params.Add('DriverID=PG');
+  FConnection.Params.Add('Server=127.0.0.1');
+  FConnection.Params.Add('Port=5432');
+  FConnection.Params.Add('Database=areco');
+  FConnection.Params.Add('User_Name=postgres');
+  FConnection.Params.Add('Password=ADMIN');
+  try
+    FConnection.Connected := True;
+    FConnected := FConnection.Connected;
+  except on e:exception do
+    begin
+    FConnected := False;
+    raise;
+    end;
+  end;
+end;
+
+procedure TConexao2.Desconectar;
+begin
+  if(FConnected) then
+  begin
+    FConnection.Connected := False;
+    FConnected := False;
+  end;
+end;
+
+function TConexao2.IsConectado: Boolean;
+begin
+  Result := FConnected;
+end;
+
+function TConexao2.GetNewQuery: TFDQuery;
+var
+  vquery: TFDQuery;
+begin
+  Result := TFDQuery.Create(nil);
+  Result.Connection := FConnection;
+  Result.Transaction := FTransaction;
+end;
+
+end.
+

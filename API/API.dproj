@@ -1,0 +1,1127 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{634F3EF8-94FE-4F99-B6AC-354CCD500342}</ProjectGuid>
+        <ProjectVersion>18.2</ProjectVersion>
+        <FrameworkType>VCL</FrameworkType>
+        <MainSource>API.dpr</MainSource>
+        <Base>True</Base>
+        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <TargetedPlatforms>1</TargetedPlatforms>
+        <AppType>Application</AppType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
+        <Base_Win32>true</Base_Win32>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Base)'=='true') or '$(Base_Win64)'!=''">
+        <Base_Win64>true</Base_Win64>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_1)'!=''">
+        <Cfg_1>true</Cfg_1>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win32)'!=''">
+        <Cfg_1_Win32>true</Cfg_1_Win32>
+        <CfgParent>Cfg_1</CfgParent>
+        <Cfg_1>true</Cfg_1>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win64)'!=''">
+        <Cfg_1_Win64>true</Cfg_1_Win64>
+        <CfgParent>Cfg_1</CfgParent>
+        <Cfg_1>true</Cfg_1>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
+        <Cfg_2>true</Cfg_2>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
+        <Cfg_2_Win32>true</Cfg_2_Win32>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win64)'!=''">
+        <Cfg_2_Win64>true</Cfg_2_Win64>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base)'!=''">
+        <SanitizedProjectName>API</SanitizedProjectName>
+        <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
+        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
+        <PostBuildEvent><![CDATA[if exist "$(BDS)\ObjRepos\en\dsrest\dsPostBuild.bat" ( call "$(BDS)\ObjRepos\en\dsrest\dsPostBuild.bat" "$(PROJECTDIR)" "$(OUTPUTDIR)" )
+$(PostBuildEvent)]]></PostBuildEvent>
+        <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
+        <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
+        <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
+        <DCC_E>false</DCC_E>
+        <DCC_N>false</DCC_N>
+        <DCC_S>false</DCC_S>
+        <DCC_F>false</DCC_F>
+        <DCC_K>false</DCC_K>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <DCC_UsePackage>DBXSqliteDriver;dxSpreadSheetConditionalFormattingDialogsRS24;dxSkinBlueprintRS24;DBXDb2Driver;dxPSDBTeeChartRS24;dxPSdxGaugeControlLnkRS24;vclactnband;dxSpreadSheetRS24;vclFireDAC;dxDockingRS24;tethering;rbTCUI1824;dxSkinVisualStudio2013BlueRS24;dxBarExtItemsRS24;FireDACADSDriver;dxFireDACServerModeRS24;dxPScxTLLnkRS24;ACBr_BPeDabpeESCPOS;JvPluginSystem;dxPSTeeChartRS24;dxSkinOffice2007BlackRS24;ACBr_BPe;FireDACMSSQLDriver;vcltouch;JvBands;ACBr_NFe;vcldb;svn;dxSkinXmas2008BlueRS24;dxSkinscxSchedulerPainterRS24;JvJans;FPOPULAR;ACBr_NFeDanfeESCPOS;dxSkinsdxBarPainterRS24;dxSkinOffice2010BlackRS24;ACBr_OFX;dxADOServerModeRS24;JvDotNetCtrls;dxGDIPlusRS24;dxPSdxDBTVLnkRS24;vclib;dxSkinLilianRS24;FireDACDBXDriver;ibo5crt_d10_1;dxNavBarRS24;vclx;cxTreeListRS24;gtPDFkitD101ProP;dxSkinDevExpressDarkStyleRS24;dxtrmdRS24;ACBr_SATExtratoRL;PKIECtrl24;RESTBackendComponents;ACBr_GTIN;dxRibbonRS24;ACBr_Reinf;VCLRESTComponents;cxExportRS24;cxPivotGridChartRS24;cxTreeListdxBarPopupMenuRS24;dxSkinOffice2013LightGrayRS24;dxTabbedMDIRS24;vclie;dxSkinVisualStudio2013LightRS24;bindengine;CloudService;JvHMI;FireDACMySQLDriver;ACBr_PAF;cxPivotGridOLAPRS24;ACBr_SATECFVirtual;dxSkinSharpRS24;dxSkinBlackRS24;DataSnapClient;rbDBE1824;FuturaComponents;dxPSLnksRS24;bindcompdbx;ACBr_CTeDacteRL;dxSkinCoffeeRS24;ACBr_TCP;DBXSybaseASEDriver;IndyIPServer;ACBr_CTe;dxSkinsdxRibbonPainterRS24;rbRIDE1824;IndySystem;dxCoreRS24;tmsbcl;sparkle;hsnSNGPC_BERLIN;ACBr_PagFor;dxSkinOffice2013DarkGrayRS24;dsnapcon;ACBre_Social;FireDACMSAccDriver;fmxFireDAC;FireDACInfxDriver;vclimg;rbIDE1824;Jcl;ACBr_SPEDImportar;rbDB1824;ACBr_SPED;emshosting;dxBarDBNavRS24;dxSkinDarkSideRS24;ACBr_MDFe;ACBr_BoletoRL;ACBr_LFD;rbRest1824;dxSkinOffice2013WhiteRS24;DBXOdbcDriver;FireDACTDataDriver;FMXTee;dxPScxExtCommonRS24;dxPSdxLCLnkRS24;soaprtl;DbxCommonDriver;dxPScxPivotGridLnkRS24;ACBr_CIOT;JvManagedThreads;rbADO1824;rbUSERDesign1824;ACBr_NFSeDanfseRL;xmlrtl;soapmidas;DataSnapNativeClient;fmxobj;dxSkinMcSkinRS24;JvTimeFramework;rtl;dxLayoutControlRS24;DbxClientDriver;rbDAD1824;DBXSybaseASADriver;cxGridRS24;dxSkinBlueRS24;dxSpellCheckerRS24;FuncionalCard;JvSystem;cxLibraryRS24;dxSkinStardustRS24;JvStdCtrls;dxSkinCaramelRS24;ACBr_Convenio115;appanalytics;rbRAP1824;dxDBXServerModeRS24;rbBDE1824;dxSkinsCoreRS24;IndyIPClient;dclRBIBE1824;dxMapControlRS24;bindcompvcl;dxSkinHighContrastRS24;dxPSdxMapControlLnkRS24;dxSkinTheAsphaltWorldRS24;ibo5trt_d10_1;TeeUI;cxPageControlRS24;dxPsPrVwAdvRS24;cxEditorsRS24;dxSkinSevenClassicRS24;JvDocking;VclSmp;cxSchedulerRibbonStyleEventEditorRS24;JvPascalInterpreter;FireDACODBCDriver;ibo5wrt_d10_1;dxSkinPumpkinRS24;DataSnapIndy10ServerTransport;JclVcl;dxSkinscxPCPainterRS24;dxPSPrVwRibbonRS24;ACBr_Boleto;DataSnapProviderClient;ACBr_SEF2;FireDACMongoDBDriver;dxSkinSevenRS24;JvControls;JvPrintPreview;ACBr_NFSe;dxdborRS24;dxmdsRS24;DataSnapServerMidas;RESTComponents;cxSchedulerGridRS24;dclRBE1824;rbCIDE1824;DBXInterBaseDriver;cxPivotGridRS24;dclRBDBE1824;dxHttpIndyRequestRS24;ACBr_NF3e;ACBr_TEFD;emsclientfiredac;ACBr_SATWS;DataSnapFireDAC;svnui;JvGlobus;dxdbtrRS24;dxSkinMetropolisRS24;dxSkinMoneyTwinsRS24;dxPScxPCProdRS24;DBXMSSQLDriver;JvMM;ACBr_MDFeDamdfeRL;DatasnapConnectorsFreePascal;dxWizardControlRS24;ACBr_EDI;ACBr_ONE;bindcompfmx;rbIBE1824;dxBarExtDBItemsRS24;DBXOracleDriver;dxPSdxOCLnkRS24;dxPSdxFCLnkRS24;inetdb;cxSchedulerTreeBrowserRS24;dxSkinOffice2016ColorfulRS24;JvAppFrm;JvNet;ibo5ftsrt_d10_1;ibo5admrt_d10_1;RaizeComponentsVcl;DelPrintDX101;FmxTeeUI;emsedge;ibo5frt_d10_1;FireDACIBDriver;fmx;fmxdae;dxSkinSpringTimeRS24;dxSkinValentineRS24;dxSkinLondonLiquidSkyRS24;ZipMasterR;dxSkinWhiteprintRS24;RaizeComponentsVclDb;JvWizards;ACBr_Diversos;ACBr_Ponto;ACBr_LCDPR;dbexpress;IndyCore;dxSkiniMaginaryRS24;UIBD21Win32R;dxTileControlRS24;dxSkinOffice2016DarkRS24;dsnap;DataSnapCommon;emsclient;rbTC1824;FireDACCommon;cxDataRS24;dxSkinOffice2007PinkRS24;rbRTL1824;dxPSdxSpreadSheetLnkRS24;JvDB;JvPageComps;ACBr_NFSeX;DataSnapConnectors;ibo5wxrt_d10_1;ACBR_DeSTDA;dxSkinDevExpressStyleRS24;soapserver;ibo5art_d10_1;ACBr_SAT;JclDeveloperTools;dxBarRS24;dxSkinMetropolisDarkRS24;FireDACOracleDriver;DBXMySQLDriver;dclRBADO1824;JvCmp;dxPSRichEditControlLnkRS24;DBXFirebirdDriver;PKIEDB24;dxPScxCommonRS24;ACBr_Sintegra;FireDACCommonODBC;FireDACCommonDriver;ACBr_GNRE;ACBr_ADRCST;inet;IndyIPCommon;dclRBFireDAC1824;dxSkinVS2010RS24;JvCustom;vcl;ibo5xrt_d10_1;ResizeKitPKD24;dxSkinSharpPlusRS24;JvXPCtrls;dxPSdxDBOCLnkRS24;ACBr_SATExtratoESCPOS;FireDACDb2Driver;ACBr_NFeDanfeRL;dxThemeRS24;ACBr_Integrador;dxSkinOffice2007GreenRS24;ibo5rplrt_d10_1;TeeDB;FireDAC;dxPScxGridLnkRS24;dxPScxVGridLnkRS24;rbFireDAC1824;JvCore;ACBr_Comum;ibo5vrt_d10_1;JvCrypt;FireDACSqliteDriver;FireDACPgDriver;ibmonitor;FireDACASADriver;dxSkinOffice2010BlueRS24;ACBr_GNREGuiaRL;dxServerModeRS24;JvDlgs;JvRuntimeDesign;ibxpress;Tee;DataSnapServer;ibxbindings;rbDIDE1824;cxSchedulerRS24;vclwinx;FireDACDSDriver;dxSkinsdxDLPainterRS24;dxPSCoreRS24;rbUSER1824;rbRCL1824;dxSkinOffice2007BlueRS24;ACBr_OpenSSL;CustomIPTransport;vcldsnap;dxSkinGlassOceansRS24;dxRibbonCustomizationFormRS24;dxPScxSchedulerLnkRS24;ACBr_PIXCD;dxSkinSummer2008RS24;dxSkinDarkRoomRS24;bindcomp;dxSkinFoggyRS24;ACBr_Serial;DBXInformixDriver;dxorgcRS24;dxSkinOffice2010SilverRS24;frce;ACBr_NFSeXDanfseRL;ACBr_BlocoX;dxRichEditControlRS24;dxSkinsdxNavBarPainterRS24;dbxcds;ACBr_NFCeECFVirtual;adortl;dxSkinSilverRS24;dxSkinVisualStudio2013DarkRS24;dxComnRS24;cxVerticalGridRS24;dxFlowChartRS24;ACBr_ANe;dsnapxml;dbrtl;inetdbxpress;IndyProtocols;dxGaugeControlRS24;dxSkinOffice2007SilverRS24;dxSkinLiquidSkyRS24;JclContainers;ACBr_NF3eDANF3eESCPOS;ACBr_MTER;fmxase;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <BT_BuildType>Debug</BT_BuildType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Win64)'!=''">
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <BT_BuildType>Debug</BT_BuildType>
+        <DCC_UsePackage>DBXSqliteDriver;dxSpreadSheetConditionalFormattingDialogsRS24;dxSkinBlueprintRS24;DBXDb2Driver;dxPSDBTeeChartRS24;dxPSdxGaugeControlLnkRS24;vclactnband;dxSpreadSheetRS24;vclFireDAC;dxDockingRS24;tethering;dxSkinVisualStudio2013BlueRS24;dxBarExtItemsRS24;FireDACADSDriver;dxFireDACServerModeRS24;dxPScxTLLnkRS24;dxPSTeeChartRS24;dxSkinOffice2007BlackRS24;FireDACMSSQLDriver;vcltouch;vcldb;dxSkinXmas2008BlueRS24;dxSkinscxSchedulerPainterRS24;dxSkinsdxBarPainterRS24;dxSkinOffice2010BlackRS24;dxADOServerModeRS24;dxGDIPlusRS24;dxPSdxDBTVLnkRS24;vclib;dxSkinLilianRS24;FireDACDBXDriver;ibo5crt_d10_1;dxNavBarRS24;vclx;cxTreeListRS24;dxSkinDevExpressDarkStyleRS24;dxtrmdRS24;RESTBackendComponents;dxRibbonRS24;VCLRESTComponents;cxExportRS24;cxPivotGridChartRS24;cxTreeListdxBarPopupMenuRS24;dxSkinOffice2013LightGrayRS24;dxTabbedMDIRS24;vclie;dxSkinVisualStudio2013LightRS24;bindengine;CloudService;FireDACMySQLDriver;cxPivotGridOLAPRS24;dxSkinSharpRS24;dxSkinBlackRS24;DataSnapClient;dxPSLnksRS24;bindcompdbx;dxSkinCoffeeRS24;DBXSybaseASEDriver;IndyIPServer;dxSkinsdxRibbonPainterRS24;IndySystem;dxCoreRS24;tmsbcl;sparkle;dxSkinOffice2013DarkGrayRS24;dsnapcon;FireDACMSAccDriver;fmxFireDAC;FireDACInfxDriver;vclimg;emshosting;dxBarDBNavRS24;dxSkinDarkSideRS24;dxSkinOffice2013WhiteRS24;DBXOdbcDriver;FireDACTDataDriver;FMXTee;dxPScxExtCommonRS24;dxPSdxLCLnkRS24;soaprtl;DbxCommonDriver;dxPScxPivotGridLnkRS24;xmlrtl;soapmidas;DataSnapNativeClient;fmxobj;dxSkinMcSkinRS24;rtl;dxLayoutControlRS24;DbxClientDriver;DBXSybaseASADriver;cxGridRS24;dxSkinBlueRS24;dxSpellCheckerRS24;cxLibraryRS24;dxSkinStardustRS24;dxSkinCaramelRS24;appanalytics;dxDBXServerModeRS24;dxSkinsCoreRS24;IndyIPClient;dxMapControlRS24;bindcompvcl;dxSkinHighContrastRS24;dxPSdxMapControlLnkRS24;dxSkinTheAsphaltWorldRS24;ibo5trt_d10_1;TeeUI;cxPageControlRS24;dxPsPrVwAdvRS24;cxEditorsRS24;dxSkinSevenClassicRS24;VclSmp;cxSchedulerRibbonStyleEventEditorRS24;FireDACODBCDriver;ibo5wrt_d10_1;dxSkinPumpkinRS24;DataSnapIndy10ServerTransport;dxSkinscxPCPainterRS24;dxPSPrVwRibbonRS24;DataSnapProviderClient;FireDACMongoDBDriver;dxSkinSevenRS24;dxdborRS24;dxmdsRS24;DataSnapServerMidas;RESTComponents;cxSchedulerGridRS24;DBXInterBaseDriver;cxPivotGridRS24;dxHttpIndyRequestRS24;emsclientfiredac;DataSnapFireDAC;dxdbtrRS24;dxSkinMetropolisRS24;dxSkinMoneyTwinsRS24;dxPScxPCProdRS24;DBXMSSQLDriver;DatasnapConnectorsFreePascal;dxWizardControlRS24;bindcompfmx;dxBarExtDBItemsRS24;DBXOracleDriver;dxPSdxOCLnkRS24;dxPSdxFCLnkRS24;inetdb;cxSchedulerTreeBrowserRS24;dxSkinOffice2016ColorfulRS24;ibo5ftsrt_d10_1;ibo5admrt_d10_1;RaizeComponentsVcl;FmxTeeUI;emsedge;ibo5frt_d10_1;FireDACIBDriver;fmx;fmxdae;dxSkinSpringTimeRS24;dxSkinValentineRS24;dxSkinLondonLiquidSkyRS24;ZipMasterR;dxSkinWhiteprintRS24;RaizeComponentsVclDb;dbexpress;IndyCore;dxSkiniMaginaryRS24;dxTileControlRS24;dxSkinOffice2016DarkRS24;dsnap;DataSnapCommon;emsclient;FireDACCommon;cxDataRS24;dxSkinOffice2007PinkRS24;dxPSdxSpreadSheetLnkRS24;DataSnapConnectors;ibo5wxrt_d10_1;dxSkinDevExpressStyleRS24;soapserver;ibo5art_d10_1;dxBarRS24;dxSkinMetropolisDarkRS24;FireDACOracleDriver;DBXMySQLDriver;dxPSRichEditControlLnkRS24;DBXFirebirdDriver;dxPScxCommonRS24;FireDACCommonODBC;FireDACCommonDriver;inet;IndyIPCommon;dxSkinVS2010RS24;vcl;ibo5xrt_d10_1;ResizeKitPKD24;dxSkinSharpPlusRS24;dxPSdxDBOCLnkRS24;FireDACDb2Driver;dxThemeRS24;dxSkinOffice2007GreenRS24;ibo5rplrt_d10_1;TeeDB;FireDAC;dxPScxGridLnkRS24;dxPScxVGridLnkRS24;ibo5vrt_d10_1;FireDACSqliteDriver;FireDACPgDriver;ibmonitor;FireDACASADriver;dxSkinOffice2010BlueRS24;dxServerModeRS24;ibxpress;Tee;DataSnapServer;ibxbindings;cxSchedulerRS24;vclwinx;FireDACDSDriver;dxSkinsdxDLPainterRS24;dxPSCoreRS24;dxSkinOffice2007BlueRS24;CustomIPTransport;vcldsnap;dxSkinGlassOceansRS24;dxRibbonCustomizationFormRS24;dxPScxSchedulerLnkRS24;dxSkinSummer2008RS24;dxSkinDarkRoomRS24;bindcomp;dxSkinFoggyRS24;DBXInformixDriver;dxorgcRS24;dxSkinOffice2010SilverRS24;dxRichEditControlRS24;dxSkinsdxNavBarPainterRS24;dbxcds;adortl;dxSkinSilverRS24;dxSkinVisualStudio2013DarkRS24;dxComnRS24;cxVerticalGridRS24;dxFlowChartRS24;dsnapxml;dbrtl;inetdbxpress;IndyProtocols;dxGaugeControlRS24;dxSkinOffice2007SilverRS24;dxSkinLiquidSkyRS24;fmxase;$(DCC_UsePackage)</DCC_UsePackage>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1)'!=''">
+        <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+        <DCC_DebugDCUs>true</DCC_DebugDCUs>
+        <DCC_Optimize>false</DCC_Optimize>
+        <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
+        <DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
+        <DCC_RemoteDebug>true</DCC_RemoteDebug>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <DCC_ExeOutput>..\_EXE</DCC_ExeOutput>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <AppEnableHighDPI>true</AppEnableHighDPI>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <DCC_RemoteDebug>false</DCC_RemoteDebug>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <AppEnableHighDPI>true</AppEnableHighDPI>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2)'!=''">
+        <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+        <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+        <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+        <DCC_DebugInformation>0</DCC_DebugInformation>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <DCC_ExeOutput>..\_EXE</DCC_ExeOutput>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <AppEnableHighDPI>true</AppEnableHighDPI>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <AppEnableHighDPI>true</AppEnableHighDPI>
+    </PropertyGroup>
+    <ItemGroup>
+        <DelphiCompile Include="$(MainSource)">
+            <MainSource>MainSource</MainSource>
+        </DelphiCompile>
+        <DCCReference Include="if_Main.pas">
+            <Form>f_Main</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uTOtr_ServerMethodsUnit.pas">
+            <Form>fOtr_ServerMethodsUnit</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDSServerModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="mDMOtr_ServerContainer.pas">
+            <Form>DMOtr_ServerContainer</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="mDMOtr_WebModuleUnit.pas">
+            <Form>DMOtr_WebModuleUnit</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TWebModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="uT_Conexao.pas"/>
+        <None Include="js\base64.js"/>
+        <None Include="js\serverfunctionexecutor.js"/>
+        <None Include="js\json2.js"/>
+        <None Include="js\callbackframework.js"/>
+        <None Include="js\serverfunctions.js"/>
+        <None Include="js\base64-min.js"/>
+        <None Include="js\json2-min.js"/>
+        <None Include="js\serverfunctionexecutor-min.js"/>
+        <None Include="js\callbackframework-min.js"/>
+        <None Include="js\connection.js"/>
+        <None Include="js\serverfunctioninvoker.js"/>
+        <None Include="css\main.css"/>
+        <None Include="css\serverfunctioninvoker.css"/>
+        <None Include="templates\reversestring.html"/>
+        <None Include="templates\serverfunctioninvoker.html"/>
+        <RcItem Include="images\collapse.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>PngImage_1</ResourceId>
+        </RcItem>
+        <RcItem Include="images\expand.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>PngImage_2</ResourceId>
+        </RcItem>
+        <BuildConfiguration Include="Release">
+            <Key>Cfg_2</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Base">
+            <Key>Base</Key>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Debug">
+            <Key>Cfg_1</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Delphi.Personality.12</Borland.Personality>
+        <Borland.ProjectType>Application</Borland.ProjectType>
+        <BorlandProject>
+            <Delphi.Personality>
+                <Source>
+                    <Source Name="MainSource">API.dpr</Source>
+                </Source>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\18.0\Bpl\pctEPHARMA_Seattle.bpl">File C:\Users\Public\Documents\Embarcadero\Studio\18.0\Bpl\pctEPHARMA_Seattle.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k240.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp240.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                </Excluded_Packages>
+            </Delphi.Personality>
+            <Deployment Version="3">
+                <DeployFile LocalName="js\base64.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>base64.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\json2.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>json2.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="templates\reversestring.html" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\templates\</RemoteDir>
+                        <RemoteName>reversestring.html</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\serverfunctioninvoker.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>serverfunctioninvoker.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\json2-min.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="templates\reversestring.html" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\templates\</RemoteDir>
+                        <RemoteName>reversestring.html</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="css\main.css" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\css\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="templates\serverfunctioninvoker.html" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\templates\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="templates\reversestring.html" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\templates\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\callbackframework-min.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>callbackframework-min.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="css\main.css" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\css\</RemoteDir>
+                        <RemoteName>main.css</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\serverfunctioninvoker.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="images\expand.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\images\</RemoteDir>
+                        <RemoteName>expand.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\serverfunctionexecutor.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>serverfunctionexecutor.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\json2-min.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>json2-min.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\json2.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>json2.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\json2.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\serverfunctionexecutor-min.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>serverfunctionexecutor-min.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\json2.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>json2.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\connection.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>connection.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\serverfunctionexecutor.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>serverfunctionexecutor.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\serverfunctionexecutor.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\base64-min.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>base64-min.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="templates\serverfunctioninvoker.html" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\templates\</RemoteDir>
+                        <RemoteName>serverfunctioninvoker.html</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\connection.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>connection.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="images\expand.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\images\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\base64.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>base64.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\serverfunctionexecutor.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>serverfunctionexecutor.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\serverfunctions.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>serverfunctions.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\callbackframework-min.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>callbackframework-min.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\serverfunctions.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>serverfunctions.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\base64-min.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>base64-min.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\callbackframework.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>callbackframework.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="templates\serverfunctioninvoker.html" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\templates\</RemoteDir>
+                        <RemoteName>serverfunctioninvoker.html</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="css\main.css" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\css\</RemoteDir>
+                        <RemoteName>main.css</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="images\expand.png" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\images\</RemoteDir>
+                        <RemoteName>expand.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\callbackframework.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>callbackframework.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\base64-min.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>base64-min.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\callbackframework-min.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>callbackframework-min.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\base64.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>base64.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="css\serverfunctioninvoker.css" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\css\</RemoteDir>
+                        <RemoteName>serverfunctioninvoker.css</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="images\collapse.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\images\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="css\serverfunctioninvoker.css" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\css\</RemoteDir>
+                        <RemoteName>serverfunctioninvoker.css</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\_EXE\API.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>API.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\json2-min.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>json2-min.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\callbackframework.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\base64-min.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\json2-min.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>json2-min.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\serverfunctioninvoker.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>serverfunctioninvoker.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\serverfunctioninvoker.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>serverfunctioninvoker.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="images\expand.png" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\images\</RemoteDir>
+                        <RemoteName>expand.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="templates\reversestring.html" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\templates\</RemoteDir>
+                        <RemoteName>reversestring.html</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\callbackframework.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>callbackframework.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="css\serverfunctioninvoker.css" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\css\</RemoteDir>
+                        <RemoteName>serverfunctioninvoker.css</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\serverfunctionexecutor-min.js" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>serverfunctionexecutor-min.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="css\main.css" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\css\</RemoteDir>
+                        <RemoteName>main.css</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="css\serverfunctioninvoker.css" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\css\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="images\collapse.png" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\images\</RemoteDir>
+                        <RemoteName>collapse.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\serverfunctionexecutor-min.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>serverfunctionexecutor-min.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\serverfunctionexecutor-min.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\callbackframework-min.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="templates\serverfunctioninvoker.html" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\templates\</RemoteDir>
+                        <RemoteName>serverfunctioninvoker.html</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\serverfunctions.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\serverfunctions.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>serverfunctions.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\connection.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="images\collapse.png" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\images\</RemoteDir>
+                        <RemoteName>collapse.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\connection.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <RemoteName>connection.js</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="js\base64.js" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\js\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="images\collapse.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\images\</RemoteDir>
+                        <RemoteName>collapse.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployClass Name="ProjectiOSDeviceResourceRules">
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOSXResource">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidClassesDexFile">
+                    <Platform Name="Android">
+                        <RemoteDir>classes</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AdditionalDebugSymbols">
+                    <Platform Name="Win32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_Launch768">
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon144">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xxhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidLibnativeMipsFile">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\mips</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Required="true" Name="ProjectOutput">
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="Linux64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="DependencyFramework">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.framework</Extensions>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectUWPManifest">
+                    <Platform Name="Win32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win64">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Launch640">
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_Launch1024">
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSDeviceDebug">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Launch320">
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSInfoPList">
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidLibnativeArmeabiFile">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="DebugSymbols">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_Launch1536">
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_SplashImage470">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-normal</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon96">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_SplashImage640">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-large</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Launch640x1136">
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="UWP_DelphiLogo44">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win64">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSEntitlements">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>..\</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon72">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-hdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidGDBServer">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOSXInfoPList">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOSXEntitlements">
+                    <Platform Name="OSX32">
+                        <RemoteDir>..\</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="UWP_DelphiLogo150">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win64">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_Launch2048">
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidSplashStyles">
+                    <Platform Name="Android">
+                        <RemoteDir>res\values</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_SplashImage426">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-small</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidSplashImageDef">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSResource">
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectAndroidManifest">
+                    <Platform Name="Android">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_DefaultAppIcon">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="File">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\</RemoteDir>
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="Android">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidServiceOutput">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Required="true" Name="DependencyPackage">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.bpl</Extensions>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon48">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-mdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_SplashImage960">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xlarge</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon36">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-ldpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="DependencyModule">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.dll;.bpl</Extensions>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                </DeployClass>
+                <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+            </Deployment>
+            <Platforms>
+                <Platform value="Win32">True</Platform>
+                <Platform value="Win64">False</Platform>
+            </Platforms>
+        </BorlandProject>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+    <Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+    <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
+    <Import Project="$(MSBuildProjectName).deployproj" Condition="Exists('$(MSBuildProjectName).deployproj')"/>
+    <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win32'">
+        <PreBuildEvent/>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>if exist &quot;$(BDS)\ObjRepos\en\dsrest\dsPostBuild.bat&quot; ( call &quot;$(BDS)\ObjRepos\en\dsrest\dsPostBuild.bat&quot; &quot;$(PROJECTDIR)&quot; &quot;$(OUTPUTDIR)&quot; )</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win64'">
+        <PreBuildEvent/>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>if exist &quot;$(BDS)\ObjRepos\en\dsrest\dsPostBuild.bat&quot; ( call &quot;$(BDS)\ObjRepos\en\dsrest\dsPostBuild.bat&quot; &quot;$(PROJECTDIR)&quot; &quot;$(OUTPUTDIR)&quot; )</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win32'">
+        <PreBuildEvent/>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>if exist &quot;$(BDS)\ObjRepos\en\dsrest\dsPostBuild.bat&quot; ( call &quot;$(BDS)\ObjRepos\en\dsrest\dsPostBuild.bat&quot; &quot;$(PROJECTDIR)&quot; &quot;$(OUTPUTDIR)&quot; )</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win64'">
+        <PreBuildEvent/>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>if exist &quot;$(BDS)\ObjRepos\en\dsrest\dsPostBuild.bat&quot; ( call &quot;$(BDS)\ObjRepos\en\dsrest\dsPostBuild.bat&quot; &quot;$(PROJECTDIR)&quot; &quot;$(OUTPUTDIR)&quot; )</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
+</Project>
